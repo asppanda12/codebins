@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    <p id="internet"></p>
+    <button type="button" onclick="myfunc()" class="btn btn-primary">Primary</button>
+    <script src="popup.js"></script>
+    <script>
+        
+      const d = new Date();
+        // <!-- Open the window in new Tab-->
+       window.open ("http://127.0.0.1:5500/hello.html","","fullscreen=yes");  
+       window.open('','_parent','');  
+      //  setTimeout(newFunc, 3000000)
+      //  clearTimeout(myVar);
+       
+     newFunc()
+     {
+      window.close();
+     }
+      
+          // <!-- track if the tab is active or not-->
+
+  var startTime=0;
+  var endTime=0;
+  document.onvisibilitychange = () =>{
+      if(document.hidden)
+      {
+          startTime++;
+      }
+      else
+      {
+         endTime++;          
+       }
+       if(endTime==3)
+       {
+          alert("Hello! I am an alert box!!");
+       }
+      console.log(endTime);
+  }
+  
+  // <!-- track no of tabs being open -->
+  const tabsOpen = localStorage.getItem('tabsOpen')
+  console.log('tabsOpen', tabsOpen)
+  if (tabsOpen == null) {
+    localStorage.setItem('tabsOpen', 1)
+  } else {
+    localStorage.setItem('tabsOpen', parseInt(tabsOpen) + parseInt(1))
+  } 
+
+  // <!-- track the interner speed -->
+  var userImageLink = 
+  "";
+                var time_start, end_time;
+              
+              // The size in bytes
+              var downloadSize = 5616998;
+              var downloadImgSrc = new Image();
+    
+              downloadImgSrc.onload = function () {
+                  end_time = new Date().getTime();
+                  displaySpeed();
+              };
+              time_start = new Date().getTime();
+              downloadImgSrc.src = userImageLink;
+              document.write("time start: " + time_start);
+              document.write("<br>");
+    
+              function displaySpeed() {
+                  var timeDuration = (end_time - time_start) / 1000;
+                  var loadedBits = downloadSize * 8;
+                  
+                  /* Converts a number into string
+                     using toFixed(2) rounding to 2 */
+                  var bps = (loadedBits / timeDuration).toFixed(2);
+                  var speedInKbps = (bps / 1024).toFixed(2);
+                  var speedInMbps = (speedInKbps / 1024).toFixed(2);
+                  if(speedInMbps>=2)
+                  document.getElementById("internet").innerHTML = "YOUR INTERNET IS OK";
+                  else
+                  document.getElementById("internet").innerHTML = "YOUR INTERNET IS RUNNING SLOW";
+                };
+</script>
+    </body>
+</html>
